@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+/* 반은형은 px값보다는 %로 중심값, 위치값 잡는게 좋음 */
+
+* {margin: 0; padding: 0;}
+li {list-style: none;}
+a {
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+.fas span {
+    position: absolute;
+    left: -9999px;
+}
+.fas {display: none;}
+
+/* header */
+header {
+    height: 80px;
+    line-height: 80px;
+    background-color: salmon;
+}
+header div {
+    max-width: 1280px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    /* 
+    max-width:1280px;
+    width: 100%;
+    > 컨테이너 최대 축은 1280px, 
+      화면 줄였을 때 1280px 이하로 가면 
+      100%%로 가로값 조절되면서
+      아래쪽에 스크롤이 생기지 않음
+    width: clalc(100% - 40px); 
+    > 정확하게 좌우 20px 마진 두고 정렬하고 싶을때
+    width : 90%; > 마진이 고정없이 변화 
+    */
+}
+/* 
+@media screen and (max-widh: 1280px) {
+
+*/
+header div::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+header h1 {
+    float: left;
+}
+header nav {
+    float: right;
+}
+header nav ul li {
+    display: inline-block;
+    width: 150px;
+}
+
+/* main_visual 메인비주얼 */
+.main_visual {
+    height: 800px;
+    background: url(../img/flower.JPG) center center / cover no-repeat;
+    text-align: center;
+    position: relative;
+}
+.main_visual div {
+    max-width: 1280px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* .cont01 */
+.cont01 {
+    max-width: 1280px;
+    /* width: 90%; */
+    width: calc(100% - 40px);
+    margin: 100px auto;
+    text-align: center;
+}
+.cont01::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.cont01 h3 {
+    font-size: 35px;
+    margin-bottom: 40px;
+}
+.cont01 div {
+    float: left;
+    width: 24%;
+    margin-right: 1.3%;
+}
+.cont01 div:last-of-type {
+    margin-right: 0;
+}
+.cont01 div img {
+    width: 100%;
+}
+/* 
+중심축 > 1280px
+자식한테는 부모가 가진값이 100%
+100%안에 div가 4개 들어갈 경우
+여백 없이 들어가면 
+> 각 25% * 4 = 100%
+(3개 > 33.3% / 2개 > 50%)
+
+근데 여기서 사이값(마진)이 필요
+1개 값이 대략적으로 24% * 4 = 96%
+이제 4%는 마진 영역이 되는것
+4 / 3 = 1.3%
+가로값 24% 마진값 1.3%
+
+이제 화면 크기 따라서 유동적으로 조절됨
+*/
+
+
+/* 뷰포트 1054px 이하 */
+@media screen and (max-width: 1024px) {
+    header nav {display: none;}
+    header {position: relative}
+    .fas {
+        display: block;
+        /* float: right;
+        line-height: 80px; */
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        
+    }
+    .main_visual {height: 500px;}
+}
+
+/* 뷰포트 767px 이하 */
+@media screen and (max-width: 767px) {
+    .cont01 div {
+        width: 49%;
+        margin-right: 2%;
+        margin-bottom: 40px;
+    }
+    .cont01 div:nth-of-type(2) {
+        margin-right: 0;
+    }
+}
